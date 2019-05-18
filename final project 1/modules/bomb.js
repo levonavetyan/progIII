@@ -1,7 +1,7 @@
 var Grass = require("./Grass");
-var random = require("./random.js");
+var random = require("../random");
 
-class Bomb extends grassArr{
+class Bomb extends Grass{
     constructor(x, y) {
         super(x,y)
         // this.x = x;

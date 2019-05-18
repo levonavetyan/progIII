@@ -37,43 +37,48 @@ function setup() {
     var side = 50;
     let matrix = [];
     //frameRate(3)
-    createCanvas(matrix[0].length * side, matrix.length * side);
-    background("grey");
     // let g = new Grass(1, 2)
     // let emptyCells = g.chooseCell(0);
     // console.log(emptyCells)
-    socket.on("data", drawCreatures);
+    socket.on("data", drawcreatures);
+
+    function drawcreatures(data) {
+        matrix = data.matrix;
+        createCanvas(matrix[0].length * side, matrix.length * side)
+        background('#acacac');
+    
 
     
-    for (var y = 0; y < matrix.length; ++y) {
-        for (var x = 0; x < matrix[y].length; ++x) {
-            if (matrix[y][x] == 2) {
-                var eatgrass = new GrassEater(x, y);
-                eatArr.push(eatgrass);
-            } else if (matrix[y][x] == 1) {
-                var grass = new Grass(x, y);
-                grassArr.push(grass);
-            }
-            else if (matrix[y][x] == 3) {
-                var gish = new Gishatich(x, y);
-                gishatich.push(gish);
-            }
-            else if (matrix[y][x] == 4) {
-                var horse = new Horse(x, y);
-                horseArr.push(horse);
-            }
-            else if (matrix[y][x] == 5) {
-                var boomb = new Bomb(x, y);
-                bombArr.push(boomb);
-            }
-        }
-    }
-}
+    
+    // for (var y = 0; y < matrix.length; ++y) {
+    //     for (var x = 0; x < matrix[y].length; ++x) {
+    //         if (matrix[y][x] == 2) {
+    //             var eatgrass = new GrassEater(x, y);
+    //             eatArr.push(eatgrass);
+    //         } else if (matrix[y][x] == 1) {
+    //             var grass = new Grass(x, y);
+    //             grassArr.push(grass);
+    //         }
+    //         else if (matrix[y][x] == 3) {
+    //             var gish = new Gishatich(x, y);
+    //             gishatich.push(gish);
+    //         }
+    //         else if (matrix[y][x] == 4) {
+    //             var horse = new Horse(x, y);
+    //             horseArr.push(horse);
+    //         }
+    //         else if (matrix[y][x] == 5) {
+    //             var boomb = new Bomb(x, y);
+    //             bombArr.push(boomb);
+    //         }
+    //     }
+    // }
 
 
-function draw() {
+
+
     //Գծում է աշխարհը, հիմվելով matrix-ի վրա
-    background('#acacac');
+    
     for (var i = 0; i < matrix.length; i++) {
         for (var j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j] == 1) {
@@ -121,6 +126,7 @@ function draw() {
     // for (var i in bombArr) {
     //     bombArr[i].eat();
     // }
+}
 }
 
 

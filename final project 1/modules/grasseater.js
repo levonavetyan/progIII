@@ -1,5 +1,5 @@
 var Grass = require("./Grass");
-var random = require("./random.js");
+var random = require("../random");
 
 class GrassEater extends Grass {
     constructor(x, y) {

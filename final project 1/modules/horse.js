@@ -1,12 +1,11 @@
 var Grass = require("./Grass");
-var random = require("./random.js");
+var random = require("../random");
 
 class Horse extends Grass{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.energy = 3;
-        this.multiply = 0;
+       
         this.directions = [];
 
     }
