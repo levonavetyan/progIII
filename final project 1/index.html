@@ -1,73 +1,86 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    
-    <script src="script.js"></script>
+    <meta charset="utf8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="p5.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
 
-   
+        div {
+            display: inline-block;
+        }
+
+        h1 {
+            padding: 20px;
+            text-align: center;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif !important;
+        }
+    </style>
+    </style>
 </head>
-<body>
-        <table id="legend">
-    <tr>
-        <td class="legend-color">Գույն</td>
-        <td>Անվանում</td>
-        <td>Շարժվում է</td>
-        <td>Ուտում է</td>
-        <td>Բազմանում է</td>
-        <td>Սատկում է</td>
-    </tr>
 
-    <tr>
-        <td class="legend-color" style="background-color:gray"></td>
-        <td>Դատարկ վանդակներ</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td class="legend-color" style="background-color:green"></td>
-        <td>Խոտ</td>
-        <td></td>
-        <td></td>
-        <td>Մոտակա 8 վանդակներում</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td class="legend-color" style="background-color:yellow"></td>
-        <td>Խոտակեր</td>
-        <td>Մոտակա 8 վանդակներում, էներգիան քչանում է 1֊ով</td>
-        <td></td>
-        <td></td>
-        <td>Սատկում է, երբ էներգիան փոքր կամ հավասար է 0֊ից</td>
-    </tr>
-    <tr>
-        <td class="legend-color" style="background-color:red"></td>
-        <td>Գիշատիչ</td>
-        <td></td>
-        <td>Խոտակերներին</td>
-        <td></td>
-        <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
-    </tr>
-    <tr>
-        <td class="legend-color" style="background-color:blue"></td>
-        <td>ձի</td>
-        <td>ձիու քայլերով</td>
-        <td>ոչնչացնում է այն վանդակը որի վրա կանգնում է</td>
-        <td>Չի բազմանում</td>
-        <td>Անմահ է</td>
-    </tr>
-    <tr>
-        <td class="legend-color" style="background-color:black"></td>
-        <td>Բոմբ
-        </td>
-        <td>հայտնվում է պատահական տեղում</td>
-        <td>ոչնչացնում է իր շուրջը գտնվող 3 շերտը</td>
-        <td>Չի բազմանում</td>
-        <td>չի սատկում</td>
-    </tr>
-    </table>>
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <h1>Ծրագրավորում III Երևան</h1>
+            </tr>
+            <tr>
+                <h1>Լևոն Ավետյան</h1>
+            </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Գույն</th>
+                <th scope="col">Նկարագրություն</th>
+                <th scope="col">Ծնվել է</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td scope="row" style="background-color:green;"></td>
+                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ այրում է
+                    կրակը, կամ նրան կոխկրտում է գիշատիչը,ձին,ռումբը</td>
+                <td id="garssCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td scope="row" style="background-color:orange;"></td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո,
+                    երբ նրան ուտում է գիշատիչը,ձին, կամ մնում է ռումբի տակ:</td>
+                <td id="garssEaterCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td scope="row" style="background-color:red;"></td>
+                <td>Կարմիրը գիշատիչն է, որը սնվում է խոտակերներով: Կարող է մահանա ձիու կամ ռումբի կողմից:</td>
+                <td id="garssEaterCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td scope="row" style="background-color:blue;"></td>
+                <td>Կապույտը ձին է որը շարժվում է ջիու քյլերով և ուտում է ամեն ինչ, բացի ռումբից: Ռումբն է կարողանում միայն վերացնել ձիուն:</td>
+                <td id="garssEaterCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td scope="row" style="background-color:black;"></td>
+                <td>Սևը ռումբն է : Անխնա վերացնում է ամեն ինչ:</td>
+                <td id="garssEaterCount"></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
+
 </html>
