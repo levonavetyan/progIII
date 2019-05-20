@@ -1,11 +1,12 @@
-
+grassCount = 0;
+grassEaterCount = 0;
 grassArr = [];
 eatArr = [];
 gishatich = [];
 horseArr = [];
 bombArr = [];
 matrix = [];
-
+//let random = require('./modules/random');
 var Grass = require('./modules/grass')
 var Bomb = require('./modules/bomb')
 var GrassEater = require('./modules/grasseater')
@@ -58,9 +59,11 @@ function dopush() {
     for (var y = 0; y < matrix.length; ++y) {
         for (var x = 0; x < matrix[y].length; ++x) {
             if (matrix[y][x] == 2) {
+                grassEaterCount++
                 var eatgrass = new GrassEater(x, y);
                 eatArr.push(eatgrass);
             } else if (matrix[y][x] == 1) {
+                grassCount++;
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
             }
@@ -102,7 +105,8 @@ function game() {
         bombArr[i].eat();
     }
     let sendData = {
-        matrix: matrix
+        matrix: matrix,
+        grassCount: grassCount
     }
     io.sockets.emit("data", sendData);
 }

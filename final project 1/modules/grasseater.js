@@ -132,6 +132,8 @@ class GrassEater extends Grass {
             //Հետազոտում է շրջապատը, որոնում դատարկ տարածքներ
             
             if (cord) {
+                grassEaterCount++
+
                 var x = cord[0];
                 var y = cord[1];
                 //this.multiply++;

@@ -70,6 +70,7 @@ class Grass {
             var fundCords = this.chooseCell(0);
             var cord = random(fundCords);
             if (cord) {
+                grassCount++;
                 var x = cord[0];
                 var y = cord[1];
 
