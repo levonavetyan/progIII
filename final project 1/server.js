@@ -1,5 +1,7 @@
 grassCount = 0;
 grassEaterCount = 0;
+gishatichCount = 0;
+horseCount = 0;
 grassArr = [];
 eatArr = [];
 gishatich = [];
@@ -68,10 +70,12 @@ function dopush() {
                 grassArr.push(grass);
             }
             else if (matrix[y][x] == 3) {
+                gishatichCount++;
                 var gish = new Gishatich(x, y);
                 gishatich.push(gish);
             }
             else if (matrix[y][x] == 4) {
+                horseCount++;
                 var horse = new Horse(x, y);
                 horseArr.push(horse);
             }
@@ -106,7 +110,10 @@ function game() {
     }
     let sendData = {
         matrix: matrix,
-        grassCount: grassCount
+        grassCount: grassCount,
+        grassEaterCount: grassEaterCount,
+        horseCount: horseCount,
+        gishatichCount: gishatichCount
     }
     io.sockets.emit("data", sendData);
 }

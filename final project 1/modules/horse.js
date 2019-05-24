@@ -46,6 +46,7 @@ class Horse extends Grass{
         var cord = random(fundCords1);
 
         if (cord) {
+            horseCount++;
             var x = cord[0];
             var y = cord[1];
 

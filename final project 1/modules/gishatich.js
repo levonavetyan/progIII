@@ -125,6 +125,7 @@ class Gishatich extends Grass{
 
         //եթե կա բազմանում է
         if (cord){
+            gishatichCount++;
             var x = cord[0];
             var y = cord[1];
             // this.multiply++;

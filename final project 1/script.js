@@ -5,6 +5,10 @@ function setup() {
     let matrix = [];
     let grassCount = document.getElementById('grassCount');
     let grassEaterCount = document.getElementById('grassEaterCount');
+    let horseCount = document.getElementById('horseCount');
+    let gishatichCount = document.getElementById('gishatichCount');
+
+
 
     socket.on("data", drawcreatures);
 
@@ -12,6 +16,8 @@ function setup() {
         matrix = data.matrix;
         grassCount.innerText = data.grassCount;
         grassEaterCount.innerText = data.grassEaterCount;
+        horseCount.innerText = data.horseCount;
+        gishatichCount.innerText = data.gishatichCount;
 
         createCanvas(matrix[0].length * side, matrix.length * side)
         background('#acacac');
