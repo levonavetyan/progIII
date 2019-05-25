@@ -3,12 +3,11 @@
 
 <head>
     <meta charset="utf8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <script src="p5.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
-    <script src="snow.js"></script>
 
     <style>
         canvas {
@@ -28,8 +27,12 @@
         body {
             font-family: 'Noto Sans', sans-serif !important;
         }
+
+        #winter {
+            float: right;
+        }
     </style>
-  
+
 </head>
 
 <body>
@@ -52,15 +55,15 @@
             <tr>
                 <th scope="row">1</th>
                 <td scope="row" style="background-color:green;"></td>
-                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ այրում է
-                    կրակը, կամ նրան կոխկրտում է գիշատիչը,ձին,ռումբը</td>
+                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ այրում է կրակը,
+                    կամ նրան կոխկրտում է գիշատիչը,ձին,ռումբը</td>
                 <td id="grassCount"></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td scope="row" style="background-color:orange;"></td>
-                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո,
-                    երբ նրան ուտում է գիշատիչը,ձին, կամ մնում է ռումբի տակ:</td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, երբ նրան
+                    ուտում է գիշատիչը,ձին, կամ մնում է ռումբի տակ:</td>
                 <td id="grassEaterCount"></td>
             </tr>
             <tr>
@@ -72,7 +75,8 @@
             <tr>
                 <th scope="row">4</th>
                 <td scope="row" style="background-color:blue;"></td>
-                <td>Կապույտը ձին է որը շարժվում է ջիու քյլերով և ուտում է ամեն ինչ, բացի ռումբից: Ռումբն է կարողանում միայն վերացնել ձիուն:</td>
+                <td>Կապույտը ձին է որը շարժվում է ջիու քյլերով և ուտում է ամեն ինչ, բացի ռումբից: Ռումբն է կարողանում միայն
+                    վերացնել ձիուն:</td>
                 <td id="horseCount"></td>
             </tr>
             <tr>
@@ -83,6 +87,10 @@
             </tr>
         </tbody>
     </table>
+    <button id="summer">Summer</button>
+    <button id="winter">Winter</button>
+    <script src="snow.js"></script>
+
 </body>
 
 </html>
